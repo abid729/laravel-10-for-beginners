@@ -42,6 +42,22 @@
             <x-primary-button class="ml-3">
                 {{ __('Log in') }}
             </x-primary-button>
+            
+           
+        </div>
+        <div class="block mt-4">
+        <x-primary-button class="ml-1">
+                <a href="/auth/redirect">{{ __('Github') }}</a>
+            </x-primary-button>
+            <x-primary-button class="ml-1">
+                <a href="/auth/google/redirect">{{ __('Google') }}</a>
+            </x-primary-button>
+            <x-primary-button class="ml-1">
+                <a href="/auth/twitter/redirect">{{ __('Twitter') }}</a>
+            </x-primary-button>
+            <x-primary-button class="ml-1">
+                <a href="/auth/linkdin/redirect">{{ __('Linkdin') }}</a>
+            </x-primary-button>
         </div>
     </form>
 </x-guest-layout>
