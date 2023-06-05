@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use OpenAI\Laravel\Facades\OpenAI;
@@ -30,18 +31,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    //Tickets 
+    Route::resource('ticket', TicketController::class);
 });
 
 require __DIR__.'/auth.php';
 
-
-Route::get('/rqw_query', function () {
-    $users = User::all();
-    foreach($users as $user){
-
-        return $user->name;
-    }
-});
 Route::get('/openai', function () {
     $result = OpenAI::completions()->create([
         'model' => 'text-davinci-003',
@@ -147,3 +142,5 @@ Route::get('/auth/linkdin/callback', function () {
         dd($e->getMessage());
     }
 });
+
+
