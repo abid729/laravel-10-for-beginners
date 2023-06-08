@@ -45,7 +45,7 @@ class AuthenticatedSessionController extends Controller
         if ($response->status() === 200) {
             // return redirect('/');
         } else {
-            return redirect('/dashboard');
+            // return redirect('/dashboard');
         }
     }
 
@@ -62,8 +62,6 @@ class AuthenticatedSessionController extends Controller
             $request->session()->regenerateToken();
             Auth::guard('web')->logout();
             Auth::logout();
-           
-
         }
         session()->flush();
         return redirect('/');

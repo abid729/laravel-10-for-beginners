@@ -47,16 +47,16 @@
         </div>
         <div class="block mt-4">
         <x-primary-button class="ml-1">
-                <a href="/auth/redirect">{{ __('Github') }}</a>
+                <a href="{{route('github.redirect')}}">{{ __('Github') }}</a>
             </x-primary-button>
             <x-primary-button class="ml-1">
-                <a href="/auth/google/redirect">{{ __('Google') }}</a>
+                <a href="{{route('google.redirect')}}">{{ __('Google') }}</a>
             </x-primary-button>
             <x-primary-button class="ml-1">
-                <a href="/auth/twitter/redirect">{{ __('Twitter') }}</a>
+                <a href="{{route('twitter.redirect')}}">{{ __('Twitter') }}</a>
             </x-primary-button>
             <x-primary-button class="ml-1">
-                <a href="/auth/linkdin/redirect">{{ __('Linkdin') }}</a>
+                <a href="{{route('linkedin.redirect')}}">{{ __('Linkedin') }}</a>
             </x-primary-button>
         </div>
     </form>
