@@ -9,6 +9,9 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Http;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -32,17 +35,37 @@ class AuthenticatedSessionController extends Controller
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
+    public function revokeToken($token)
+    {
+        $response = Http::get('https://accounts.google.com/o/oauth2/revoke', [
+            'token' => $token,
+        ]);
+
+        // Check the response status code to determine if the token was revoked successfully
+        if ($response->status() === 200) {
+            // return redirect('/');
+        } else {
+            return redirect('/dashboard');
+        }
+    }
+
     /**
      * Destroy an authenticated session.
      */
     public function destroy(Request $request): RedirectResponse
     {
-        Auth::guard('web')->logout();
+        $token = Session::get('socialite_token');
+        if ($token) {
+            $this->revokeToken($token);
+        } else {
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+            Auth::guard('web')->logout();
+            Auth::logout();
+           
 
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
+        }
+        session()->flush();
         return redirect('/');
     }
 }

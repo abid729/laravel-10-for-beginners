@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use OpenAI\Laravel\Facades\OpenAI;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +24,11 @@ Route::get('/', function () {
     return redirect('/login');
 
 });
-
+Route::get('/test-session', function () {
+    Session::put('test', 'Session Test');
+    $value = Session::get('test');
+    dd($value);
+});
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -75,9 +81,12 @@ Route::get('/auth/google/redirect', function () {
     return Socialite::driver('google')->redirect();
 });
 
-Route::get('/auth/google/callback', function () {
+Route::get('/auth/google/callback', function (Request $request) {
     try {
         $user = Socialite::driver('google')->user();
+        
+        Session::put('socialite_token', $user->token);
+       
         $user = User::updateOrCreate(
             [
                 'email' => $user->email
@@ -87,6 +96,7 @@ Route::get('/auth/google/callback', function () {
                 'password' => "password"
             ]
             );
+            
             Auth::login($user);
             return redirect('/dashboard');
     } catch (Exception $e) {
