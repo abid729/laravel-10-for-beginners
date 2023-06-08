@@ -15,7 +15,8 @@ class TicketController extends Controller
      */
     public function index()
     {
-        //
+       $tickets = Ticket::all();
+        return view('tickets.list', compact('tickets'));
     }
 
     /**
@@ -39,17 +40,18 @@ class TicketController extends Controller
             $path =  "attachments/$filename.$ext";
             Storage::disk('public')->put($path,$contents);
         }
+
         $ticket = Ticket::create([
             'title' => $request->title,
             'description' => $request->description,
-            'user_id' => auth()->id(),
+            'user_id' => auth()->user()->id,
             'attachment' => $request->file('attachment') ? $path : null,
         ]);
-        $ticket['data'] = $ticket;
-        $ticket['status'] = "200";
-        $ticket['status-message'] = "Record added successfully";
-        // return response($ticket)->toArray();
-        return $ticket ; 
+
+        $tickets['data'] = $ticket;
+        $tickets['status'] = "200";
+        $tickets['status-message'] = "Record added successfully";
+        return response()->redirect(route('ticket.index'));
     }
 
     /**
@@ -57,7 +59,7 @@ class TicketController extends Controller
      */
     public function show(Ticket $ticket)
     {
-        //
+
     }
 
     /**
