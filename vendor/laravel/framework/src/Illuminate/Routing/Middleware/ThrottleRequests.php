@@ -59,7 +59,7 @@ class ThrottleRequests
     {
         return static::class.':'.implode(',', func_get_args());
     }
-
+    
     /**
      * Handle an incoming request.
      *
@@ -299,4 +299,5 @@ class ThrottleRequests
     {
         return is_null($retryAfter) ? $this->limiter->retriesLeft($key, $maxAttempts) : 0;
     }
+    
 }
