@@ -19,8 +19,9 @@ use OpenAI\Laravel\Facades\OpenAI;
 |
 */
 
+require __DIR__ . '/auth.php';
 Route::get('/', function () {
-    return redirect('/login');
+   return redirect('/login');
 });
 
 //Socialite Routes 
@@ -46,13 +47,13 @@ Route::middleware('auth')->group(function () {
     Route::resource('ticket', TicketController::class);
 });
 
-require __DIR__.'/auth.php';
+
 
 Route::get('/openai', function () {
     $result = OpenAI::completions()->create([
         'model' => 'text-davinci-003',
         'prompt' => 'PHP is',
     ]);
-     
-    echo $result['choices'][0]['text']; 
+
+    echo $result['choices'][0]['text'];
 });

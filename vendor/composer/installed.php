@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '859e27cd79efa2b7c4ce2beeb82ae32c639e0f9e',
+        'reference' => 'bbbb550e7986bc451bda5b12236dddbf7a31fe75',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -391,6 +391,24 @@
                 0 => 'v10.12.0',
             ),
         ),
+        'jaybizzle/crawler-detect' => array(
+            'pretty_version' => 'v1.2.115',
+            'version' => '1.2.115.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../jaybizzle/crawler-detect',
+            'aliases' => array(),
+            'reference' => '4531e4a70d55d10cbe7d41ac1ff0d75a5fe2ef1e',
+            'dev_requirement' => false,
+        ),
+        'jenssegers/agent' => array(
+            'pretty_version' => 'v2.6.4',
+            'version' => '2.6.4.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../jenssegers/agent',
+            'aliases' => array(),
+            'reference' => 'daa11c43729510b3700bc34d414664966b03bffe',
+            'dev_requirement' => false,
+        ),
         'kodova/hamcrest-php' => array(
             'dev_requirement' => true,
             'replaced' => array(
@@ -421,7 +439,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '859e27cd79efa2b7c4ce2beeb82ae32c639e0f9e',
+            'reference' => 'bbbb550e7986bc451bda5b12236dddbf7a31fe75',
             'dev_requirement' => false,
         ),
         'laravel/pint' => array(
@@ -539,6 +557,15 @@
             'install_path' => __DIR__ . '/../league/oauth1-client',
             'aliases' => array(),
             'reference' => 'd6365b901b5c287dd41f143033315e2f777e1167',
+            'dev_requirement' => false,
+        ),
+        'mobiledetect/mobiledetectlib' => array(
+            'pretty_version' => '2.8.41',
+            'version' => '2.8.41.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../mobiledetect/mobiledetectlib',
+            'aliases' => array(),
+            'reference' => 'fc9cccd4d3706d5a7537b562b59cc18f9e4c0cb1',
             'dev_requirement' => false,
         ),
         'mockery/mockery' => array(

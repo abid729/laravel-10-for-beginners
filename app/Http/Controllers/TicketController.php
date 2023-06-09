@@ -5,11 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Ticket;
 use App\Http\Requests\StoreTicketRequest;
 use App\Http\Requests\UpdateTicketRequest;
+use App\Models\AppLogs;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
-
+use Jenssegers\Agent\Agent;
 class TicketController extends Controller
 {
+    protected $agent;
+
+    public function __construct(Agent $agent)
+    {
+        $this->agent = $agent;
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -32,7 +40,7 @@ class TicketController extends Controller
      */
     public function store(StoreTicketRequest $request)
     {
-        if($request->file('attachment'))
+       if($request->file('attachment'))
         {
             $ext = $request->file('attachment')->extension();
             $contents = file_get_contents($request->file('attachment'));
@@ -51,7 +59,23 @@ class TicketController extends Controller
         $tickets['data'] = $ticket;
         $tickets['status'] = "200";
         $tickets['status-message'] = "Record added successfully";
-        return response()->redirect(route('ticket.index'));
+        
+        //Create Log
+        $formdata = [];
+        $device = $this->agent->getUserAgent();
+        $ip = request()->getClientIp();
+        $formdata = $request->all();
+        $formdata['attachment'] = $request->file('attachment');
+        $data['entry_id'] = $ticket->id;
+        $data['action'] = 'Create';
+        $data['task_title'] = 'Ticket';
+        $data['ip_address'] = $ip;
+        $data['description'] = json_encode($formdata);
+        $data['url'] = request()->root();
+        $data['device_details'] = $device;
+        $data['action_by'] = auth()->user()->id;
+        $newRecord = createLog(AppLogs::class, $data);
+        return  redirect()->route('ticket.index');
     }
 
     /**
