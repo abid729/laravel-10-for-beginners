@@ -26,28 +26,12 @@ class SocialiteController extends Controller
 
     public function redirectToGoogle()
     {
-        $device = $this->agent->getUserAgent();
-        $device = $this->agent->getIp();
-        dd($device);
         return Socialite::driver('google')->redirect();
     }
 
     public function callbackFromGoogle(Request $request)
     {
-        // dd($request->getClientIp());
-        // $data = $request->all();
-
-    
-    $data['entry_id'] = '11';
-    $data['action'] = '11';
-    $data['action'] = '11';
-    $data['description'] = '11';
-    $data['url'] = '11';
-    $data['device_details'] = '11';
-    $data['action_by'] = '1';
-   
-    $newRecord = createNewRecord(AppLogs::class, $data);
-    dd($newRecord);
+        
         try {
             $user = Socialite::driver('google')->user();
 

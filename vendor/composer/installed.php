@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'bbbb550e7986bc451bda5b12236dddbf7a31fe75',
+        'reference' => 'a6e128b7969d9b5d34f3db4df1f23337e8288188',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -439,7 +439,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'bbbb550e7986bc451bda5b12236dddbf7a31fe75',
+            'reference' => 'a6e128b7969d9b5d34f3db4df1f23337e8288188',
             'dev_requirement' => false,
         ),
         'laravel/pint' => array(
@@ -557,6 +557,15 @@
             'install_path' => __DIR__ . '/../league/oauth1-client',
             'aliases' => array(),
             'reference' => 'd6365b901b5c287dd41f143033315e2f777e1167',
+            'dev_requirement' => false,
+        ),
+        'livewire/livewire' => array(
+            'pretty_version' => 'v2.12.3',
+            'version' => '2.12.3.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../livewire/livewire',
+            'aliases' => array(),
+            'reference' => '019b1e69d8cd8c7e749eba7a38e4fa69ecbc8f74',
             'dev_requirement' => false,
         ),
         'mobiledetect/mobiledetectlib' => array(
